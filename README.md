@@ -274,7 +274,6 @@ Use `--task-type no_reasoning` or `--task-type free_reasoning` for the other tex
 [![Gsm8k](https://img.shields.io/badge/Dataset-Gsm8k-blue?style=flat&logo=huggingface)](https://huggingface.co/datasets/openai/gsm8k)
 [![AquaRat](https://img.shields.io/badge/Dataset-AquaRat-blue?style=flat&logo=huggingface)](https://huggingface.co/datasets/deepmind/aqua_rat)
 [![ScienceQA](https://img.shields.io/badge/Dataset-ScienceQA-blue?style=flat&logo=github)](https://github.com/lupantech/ScienceQA)
-[![GPQA Diamond](https://img.shields.io/badge/Dataset-GPQA-Diamond-blue?style=flat)](https://arxiv.org/pdf/2311.12022)
 [![Zebra-CoT](https://img.shields.io/badge/Dataset-Zebra--CoT-blue?style=flat&logo=huggingface)](https://huggingface.co/datasets/multimodal-reasoning-lab/Zebra-CoT)
 
 This project is licensed under the **MIT License**. Please refer to the [LICENSE](./LICENSE) file for more details.
