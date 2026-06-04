@@ -1,0 +1,6 @@
+openai
+pillow
+pymupdf
+loguru
+pyyaml
+math-verify

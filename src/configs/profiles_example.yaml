@@ -1,0 +1,17 @@
+models:
+  gpt5.1:
+    api_key: ""
+    base_url: ""
+    model: "gpt-5.1-2025-11-13"
+    temperature: 0.0
+  llmjudge:
+    api_key: ""
+    base_url: ""
+    model: "deepseek-chat"
+    temperature: 0.0
+  nano-banana-pro:
+    api_key: ""
+    base_url: ""
+    model: "nano-banana-pro"
+    temperature: 0.0
+
