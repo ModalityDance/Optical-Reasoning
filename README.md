@@ -42,6 +42,7 @@ Welcome to **Optical Reasoning**! 👋 This repository accompanies *"Optical Rea
         * [G-OR Rationales](#rationales-gor)
     * [3. Inference](#inference)
         * [Optical reasoning](#inference-optical)
+        * [Usage Example](#usage-example)
         * [Text baselines](#inference-text)
 * [✨ How It Works](#how-it-works)
 * [🪐 Key Features](#key-features)
@@ -224,6 +225,60 @@ bash scripts/infer_graphical.sh
 
 ```
 
+#### Usage Example <span id="usage-example"></span>
+
+The example below shows the intended inference pattern after an optical rationale image has already been generated. The MLLM receives the original problem text together with the T-OR or G-OR rationale image, then returns the final answer in `\boxed{ANSWER}` format.
+
+```python
+import json
+import subprocess
+from pathlib import Path
+
+# 1) Prepare one example with the original problem and a generated rationale image.
+#    Replace this path with an existing T-OR or G-OR rationale image.
+rationale_image = Path("data/aqua_rat/T-OR/images/sample-001.png").resolve()
+
+example = {
+    "id": "sample-001",
+    "problem": "A rectangle has length 12 and width 5. What is its area?",
+    "image_path": str(rationale_image),
+}
+
+input_jsonl = Path("outputs/tmp/usage_example_input.jsonl")
+output_jsonl = Path("outputs/tmp/usage_example_output.jsonl")
+input_jsonl.parent.mkdir(parents=True, exist_ok=True)
+input_jsonl.write_text(json.dumps(example) + "\n", encoding="utf-8")
+
+# 2) Run image-based reasoning inference.
+subprocess.run(
+    [
+        "python",
+        "src/run.py",
+        "infer",
+        "--data",
+        str(input_jsonl),
+        "--output",
+        str(output_jsonl),
+        "--profile",
+        "gpt5.1",
+        "--task-type",
+        "img_reasoning",
+        "--max-tokens",
+        "256",
+        "--no-evaluate",
+    ],
+    check=True,
+)
+
+# 3) Inspect the model answer.
+result = json.loads(output_jsonl.read_text(encoding="utf-8").splitlines()[0])
+print(result["prediction"])
+print(result["parsed_prediction"])
+```
+
+> [!NOTE]
+> Configure `src/configs/profiles.yaml` before running the example. For multimodal datasets, add `question_image` to the JSONL row when the original question also includes an input image.
+
 #### Text baselines <span id="inference-text"></span>
 
 Text reasoning receives the problem followed by the rationale, and free reasoning asks the model to solve the problem step by step.
@@ -298,8 +353,5 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
   <a href="https://github.com/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/⭐ Star%20us%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
   <a href="https://github.com/ModalityDance/Optical-Reasoning/issues"><img src="https://img.shields.io/badge/🐞 Report%20Issues-e74c3c?style=for-the-badge&logo=github"/></a>
 </div>
-
-
-
 
 
