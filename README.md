@@ -3,55 +3,53 @@
 <div align="center">
   <h1 align="center">Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text</h1>
 </div>
-
 <div align="center">
-  <!-- Paper Link -->
   <a href="">
-    <img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&logo=arxiv" alt="Paper" height="22">
+    <img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&logo=arxiv" alt="Paper">
   </a>
-
-  <!-- Dataset Link -->
   <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning">
-    <img src="https://img.shields.io/badge/HuggingFace-Dataset-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="Dataset" height="22">
+    <img src="https://img.shields.io/badge/Dataset-Available-4c1?style=for-the-badge" alt="Dataset">
   </a>
 </div>
 
+
 ---
 
-Welcome to **Optical Reasoning**! 👋 This repository accompanies *"Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text"*, a framework that treats images as a standalone reasoning medium. It supports typographic-based optical reasoning for compact rationale rendering and graphical-based optical reasoning for structured visual rationales. The repository also provides scripts for preparing reasoning data and reproducing experiment results.
+Welcome to **Optical Reasoning**! 👋 This repository accompanies *"Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text"*, a framework that treats images as a standalone reasoning medium. It supports typographic-based optical reasoning for compact rationale rendering and graphical-based optical reasoning for structured visual rationales. The repository also provides scripts for preparing visual rationales and reproducing experimental results.
 
 <img src="./assets/intro.png" alt="vision"  style="max-width: 70%; height: auto;">
 
-### 🪐 Key Features
+### 🪐 Key Features <span id="key-features"></span>
 
-🧭 **Typographic-Based Optical Reasoning**  
-T-OR renders the interleaved-modal rationale sequence into a compact typographic image with XeLaTeX.
+🖨️ **Typographic-Based Optical Reasoning** T-OR renders the interleaved-modal rationale sequence into a compact typographic image with XeLaTeX.
 
-🌌 **Graphical-Based Optical Reasoning**  
-G-OR transforms the interleaved-modal rationale sequence into a unified image-based rationale that organizes reasoning with text, graphical elements, and spatial layouts.
+🎨 **Graphical-Based Optical Reasoning** G-OR transforms the interleaved-modal rationale sequence into a unified image-based rationale that organizes reasoning with text, graphical elements, and spatial layouts.
 
-## 🔥 News
+## 🔥 News <span id="news"></span>
 
 <div style="max-height: 240px; overflow-y: auto;">
 
-- **[2026.06]** Initial release of Optical Reasoning.
+* **[2026.06]** Initial release of Optical Reasoning.
 
 </div>
 
 ## 📑 Table of Contents <span id="table-of-contents"></span>
 
 * [🚀 Quick Start](#quick-start)
-  * [1. Installation](#installation)
-    * [Create environment](#install-env)
-    * [Install XeLaTeX](#install-xelatex)
-    * [Model profiles](#install-profiles)
-  * [2. Reasoning Data](#reasoning-data)
-    * [Prepare Your Own Data](#reasoning-data-prepare)
-    * [T-OR Reasoning Data](#reasoning-data-tor)
-    * [G-OR Reasoning Data](#reasoning-data-gor)
-  * [3. Inference](#inference)
-    * [Image reasoning](#inference-image)
-    * [Text baselines](#inference-text)
+    * [1. Installation](#installation)
+        * [Create environment](#install-env)
+        * [Install XeLaTeX](#install-xelatex)
+        * [Model profiles](#install-profiles)
+    * [2. Rationales](#rationales)
+        * [Prepare Your Own Rationales](#rationales-prepare)
+        * [T-OR Rationales](#rationales-tor)
+        * [G-OR Rationales](#rationales-gor)
+    * [3. Inference](#inference)
+        * [Optical reasoning](#inference-optical)
+        * [Text baselines](#inference-text)
+* [✨ How It Works](#how-it-works)
+* [🪐 Key Features](#key-features)
+* [🔥 News](#news)
 * [🗂️ Project Structure](#project-structure)
 * [🌱 Acknowledgements](#acknowledgements)
 * [📚 Citation](#citation)
@@ -68,6 +66,7 @@ conda activate optical-reasoning
 
 pip install -U pip
 pip install -r requirements.txt
+
 ```
 
 #### Install XeLaTeX <span id="install-xelatex"></span>
@@ -81,18 +80,21 @@ apt-get install -y texlive-xetex texlive-latex-extra texlive-fonts-recommended
 
 # macOS
 brew install --cask mactex-no-gui
+
 ```
 
 Check the installation:
 
 ```bash
 xelatex --version
+
 ```
 
 #### Model profiles <span id="install-profiles"></span>
 
 ```bash
 cp src/configs/profiles_example.yaml src/configs/profiles.yaml
+
 ```
 
 ```yaml
@@ -112,18 +114,19 @@ models:
     base_url: ""
     model: "nano-banana-pro"
     temperature: 0.0
+
 ```
 
 ---
 
-### 2. Reasoning Data <span id="reasoning-data"></span>
+### 2. Rationales <span id="rationales"></span>
 
 > [!TIP]
-> The reasoning data used in the paper can be downloaded from the [Optical-Reasoning dataset](https://huggingface.co/datasets/ModalityDance/Optical-Reasoning).
+> The rationales used in the paper can be downloaded from the [Optical-Reasoning dataset](https://huggingface.co/datasets/ModalityDance/Optical-Reasoning).
 
-#### Prepare Your Own Data <span id="reasoning-data-prepare"></span>
+#### Prepare Your Own Rationales <span id="rationales-prepare"></span>
 
-If you want to build reasoning data from your own rationales, start from the JSONL format below. The `reasoning_token` field is required to specify the target reasoning-token budget for rendering each rationale image.
+If you want to build visual rationales from textual rationales, start from the JSONL format below.
 
 ```json
 {
@@ -133,9 +136,18 @@ If you want to build reasoning data from your own rationales, start from the JSO
   "answer": "A",
   "reasoning_token": 512
 }
+
 ```
 
-The generated T-OR and G-OR reasoning data follow this folder structure:
+The fields are:
+
+* `id`: unique example identifier.
+* `problem`: input question or problem statement.
+* `solution`: textual rationale to be rendered.
+* `answer`: ground-truth answer.
+* `reasoning_token`: token count of the textual rationale in `solution`.
+
+The generated T-OR and G-OR rationales follow this folder structure:
 
 ```plaintext
 data/
@@ -147,9 +159,10 @@ data/
       └── G-OR/
           ├── output.jsonl
           └── images/
+
 ```
 
-#### T-OR Reasoning Data <span id="reasoning-data-tor"></span>
+#### T-OR Rationales <span id="rationales-tor"></span>
 
 T-OR renders the rationale into a compact typographic image while preserving the original order of the reasoning content.
 
@@ -159,18 +172,16 @@ INPUT_JSONL=data/aqua_rat/aqua_rat.jsonl \
 OUTPUT_DIR=data/aqua_rat/T-OR \
 OUTPUT_JSONL=data/aqua_rat/T-OR/output.jsonl \
 bash scripts/render_typographic.sh
+
 ```
 
-<details>
-<summary>What this script does?</summary>
+> [!IMPORTANT]
+> For T-OR rendering, the textual rationale in the `solution` field must be LaTeX text without syntax errors.
 
-- Reads rationales from the `solution` field.
-- Searches for a compact and readable typographic layout under the `reasoning_token` budget.
-- Writes rendered images and an updated `output.jsonl` with reasoning image paths.
+* Reads rationales from the `solution` field.
+* Searches for a compact and readable typographic layout under the `reasoning_token` budget.
 
-</details>
-
-#### G-OR Reasoning Data <span id="reasoning-data-gor"></span>
+#### G-OR Rationales <span id="rationales-gor"></span>
 
 G-OR generates a structured visual rationale by composing reasoning steps into graphical panels.
 
@@ -181,22 +192,17 @@ OUTPUT_BASE=data/aqua_rat/G-OR \
 OUTPUT_JSONL=data/aqua_rat/G-OR/output.jsonl \
 PROFILE=nano-banana-pro \
 bash scripts/render_graphical.sh
+
 ```
 
-<details>
-<summary>What this script does?</summary>
-
-- Uses the configured generation profile, such as `PROFILE=nano-banana-pro`.
-- Converts the problem, rationale, and optional visual inputs into a step-aligned graphical rationale.
-- Writes generated images and an updated `output.jsonl` with reasoning image paths.
-
-</details>
+* Uses the configured generation profile, such as `PROFILE=nano-banana-pro`.
+* Converts the problem, rationale, and optional visual inputs into a step-aligned graphical rationale.
 
 ---
 
 ### 3. Inference <span id="inference"></span>
 
-#### Image reasoning <span id="inference-image"></span>
+#### Optical reasoning <span id="inference-optical"></span>
 
 For optical reasoning, T-OR takes the problem text together with the rendered typographic rationale image, while G-OR takes the problem text together with the generated graphical rationale image.
 
@@ -208,6 +214,7 @@ INPUT_JSONL=data/aqua_rat/T-OR/output.jsonl \
 OUTPUT_DIR=outputs/aqua_rat/T-OR \
 OUTPUT_JSONL=outputs/aqua_rat/T-OR/infer_gpt5.1.jsonl \
 bash scripts/infer_typographic.sh
+
 ```
 
 Run inference on G-OR:
@@ -218,6 +225,7 @@ INPUT_JSONL=data/aqua_rat/G-OR/output.jsonl \
 OUTPUT_DIR=outputs/aqua_rat/G-OR \
 OUTPUT_JSONL=outputs/aqua_rat/G-OR/infer_gpt5.1.jsonl \
 bash scripts/infer_graphical.sh
+
 ```
 
 #### Text baselines <span id="inference-text"></span>
@@ -230,19 +238,18 @@ python src/run.py infer \
   --output outputs/<dataset>/text_reasoning/infer_<model>.jsonl \
   --profile <model> \
   --task-type text_reasoning
+
 ```
 
 Use `--task-type no_reasoning` or `--task-type free_reasoning` for the other text baselines.
 
-<details>
-<summary>Key args meaning</summary>
+## ✨ How It Works <span id="how-it-works"></span>
 
-- `--data`: input JSONL file
-- `--output`: output prediction JSONL path
-- `--profile`: model profile name in `src/configs/profiles.yaml`
-- `--task-type`: reasoning mode, including `no_reasoning`, `free_reasoning`, `text_reasoning`, and `img_reasoning`
+Optical Reasoning explores the bold idea of using images as a standalone reasoning medium for both language and multimodal tasks.  
 
-</details>
+- **Optical Reasoning:** formulates a unified interleaved-modal rationale sequence and maps it into an image, allowing the model to derive final answers directly from visual reasoning tokens rather than textual ones.  
+- **Typographic-Based (T-OR):** optimizes visual layouts by searching over text width and font size to render rationales into compact, high-density typographic images under a strictly controllable reasoning-token budget.  
+- **Graphical-Based (G-OR):** decomposes rationales into distinct reasoning steps and assigns them to specific visual panels, creating a step-aligned composition that naturally unifies textual rationales, graphical elements, and spatial layouts.  
 
 ---
 
@@ -266,6 +273,7 @@ Use `--task-type no_reasoning` or `--task-type free_reasoning` for the other tex
     │   ├── typographic_render.py
     │   └── graphical_render.py
     └── utils/
+
 ```
 
 ## 🌱 **Acknowledgements** <span id="acknowledgements"></span>
@@ -276,7 +284,7 @@ Use `--task-type no_reasoning` or `--task-type free_reasoning` for the other tex
 [![ScienceQA](https://img.shields.io/badge/Dataset-ScienceQA-blue?style=flat&logo=github)](https://github.com/lupantech/ScienceQA)
 [![Zebra-CoT](https://img.shields.io/badge/Dataset-Zebra--CoT-blue?style=flat&logo=huggingface)](https://huggingface.co/datasets/multimodal-reasoning-lab/Zebra-CoT)
 
-This project is licensed under the **MIT License**. Please refer to the [LICENSE](./LICENSE) file for more details.
+This project is licensed under the **MIT License**. Please refer to the [LICENSE](https://www.google.com/search?q=./LICENSE) file for more details.
 
 ## 📚 **Citation** <span id="citation"></span>
 
@@ -285,18 +293,7 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
   title        = {Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text},
   year         = {2026}
 }
+
 ```
 
 ---
-
-<div align="center">
-
-<a href="">
-  <img src="https://img.shields.io/badge/⭐ Star%20us%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="Star us on GitHub">
-</a>
-
-<a href="">
-  <img src="https://img.shields.io/badge/🐞 Report%20Issues-e74c3c?style=for-the-badge&logo=github" alt="Report Issues">
-</a>
-
-</div>
