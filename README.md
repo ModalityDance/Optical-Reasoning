@@ -4,11 +4,10 @@
   <h1 align="center">Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text</h1>
 </div>
 <div align="center">
-  <a href=""><img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&logo=arxiv" alt="Paper"></a>
-  <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/Dataset-Available-4c1?style=for-the-badge" alt="Dataset"></a>
+  <a href=""><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv Paper" height="22"></a>
+  <a href="xxxx"><img src="https://img.shields.io/badge/HuggingFace-Paper-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="HF Papers" height="22"></a>
+  <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/HuggingFace-Dataset-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="HF Dataset" height="22"></a>
 </div>
-
-
 
 ---
 
@@ -119,7 +118,7 @@ models:
 ### 2. Rationales <span id="rationales"></span>
 
 > [!TIP]
-> The rationales used in the paper can be downloaded from the [Optical-Reasoning dataset](https://huggingface.co/datasets/ModalityDance/Optical-Reasoning).
+> The rationales used in the paper can be downloaded from the [Optical-Reasoning-4k](https://huggingface.co/datasets/ModalityDance/Optical-Reasoning-4k).
 
 #### Prepare Your Own Rationales <span id="rationales-prepare"></span>
 
@@ -294,3 +293,13 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
 ```
 
 ---
+
+<div align="center">
+  <a href="https://github.com/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/⭐ Star%20us%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
+  <a href="https://github.com/ModalityDance/Optical-Reasoning/issues"><img src="https://img.shields.io/badge/🐞 Report%20Issues-e74c3c?style=for-the-badge&logo=github"/></a>
+</div>
+
+
+
+
+
