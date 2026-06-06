@@ -3,11 +3,12 @@
 <div align="center">
   <h1 align="center">Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text</h1>
 </div>
+
 <div align="center">
-  <a href="">
+  <a href="" style="text-decoration: none; display: inline-block; line-height: 0;">
     <img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&logo=arxiv" alt="Paper">
   </a>
-  <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning">
+  <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning" style="text-decoration: none; display: inline-block; line-height: 0;">
     <img src="https://img.shields.io/badge/Dataset-Available-4c1?style=for-the-badge" alt="Dataset">
   </a>
 </div>
