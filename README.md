@@ -144,6 +144,13 @@ The fields are:
 * `answer`: ground-truth answer.
 * `reasoning_token`: token count of the textual rationale in `solution`.
 
+> [!TIP]
+> Use `src/utils/add_reasoning_tokens.py` to add the `reasoning_token` field to each JSONL record:
+> ```bash
+> python src/utils/add_reasoning_tokens.py data/<dataset>/<dataset>.jsonl
+> ```
+> By default, the script updates the input file in place. Use `--output-path <output.jsonl>` to write to a separate file.
+
 The generated T-OR and G-OR rationales follow this folder structure:
 
 ```plaintext
@@ -353,5 +360,4 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
   <a href="https://github.com/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/⭐ Star%20us%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
   <a href="https://github.com/ModalityDance/Optical-Reasoning/issues"><img src="https://img.shields.io/badge/🐞 Report%20Issues-e74c3c?style=for-the-badge&logo=github"/></a>
 </div>
-
 
