@@ -208,3 +208,5 @@ __marimo__/
 
 data/
 src/configs/profiles.yaml
+outputs/
+docs/
