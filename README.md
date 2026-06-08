@@ -44,6 +44,7 @@ Welcome to **Optical Reasoning**! 👋 This repository accompanies *"Optical Rea
         * [Optical reasoning](#inference-optical)
         * [Usage Example](#usage-example)
         * [Text baselines](#inference-text)
+    * [4. Reproduction](#reproduction)
 * [✨ How It Works](#how-it-works)
 * [🪐 Key Features](#key-features)
 * [🔥 News](#news)
@@ -301,6 +302,53 @@ python src/run.py infer \
 
 Use `--task-type no_reasoning` or `--task-type free_reasoning` for the other text baselines.
 
+---
+
+### 4. Reproduction <span id="reproduction"></span>
+
+The main experiment script evaluates five models on five benchmarks under seven settings: no reasoning, text reasoning, and T-OR with reasoning token ratios of `0.2`, `0.4`, `0.6`, `0.8`, and `1.0`.
+
+First, configure the model profiles in `src/configs/profiles.yaml` and prepare the benchmark datasets and full T-OR rationales under `data/`. Each benchmark must contain the full T-OR data at:
+
+```plaintext
+data/<dataset>/T-OR/
+├── output.jsonl
+└── images/
+```
+
+Generate the T-OR datasets for reasoning token ratios `0.2`, `0.4`, `0.6`, and `0.8` from the full T-OR data:
+
+```bash
+bash scripts/generate_tor_ratio_data.sh
+```
+
+The generated datasets are written to `data/<dataset>/T-OR-<ratio>/`. The original `T-OR` directory is used for ratio `1.0`.
+
+After preparing all ratio datasets, run the main experiments:
+
+```bash
+bash scripts/main_exp.sh
+```
+
+By default, the script runs 175 experiments and writes predictions and evaluation metrics to:
+
+```plaintext
+outputs/main_exp/<model>/<benchmark>/<setting>/
+├── output.jsonl
+└── metrics.json
+
+```
+
+The experiment matrix can be changed through environment variables:
+
+```bash
+MODELS_STR="gpt5.1 claude-sonnet-4.5 kimi-k2.5 gemini2.5 qwen3vl" \
+BENCHMARKS_STR="aqua_rat gpqa gsm8k scienceqa_img zebra-cot" \
+TASK_TYPES_STR="no_reasoning text_reasoning img_reasoning" \
+TOKEN_RATIOS_STR="0.2 0.4 0.6 0.8 1.0" \
+bash scripts/main_exp.sh
+```
+
 ## ✨ How It Works <span id="how-it-works"></span>
 
 Optical Reasoning explores the bold idea of using images as a standalone reasoning medium for both language and multimodal tasks.  
@@ -318,7 +366,8 @@ Optical Reasoning explores the bold idea of using images as a standalone reasoni
 │   ├── render_typographic.sh
 │   ├── render_graphical.sh
 │   ├── infer_typographic.sh
-│   └── infer_graphical.sh
+│   ├── infer_graphical.sh
+│   └── main_exp.sh
 │
 └── src/
     ├── run.py
@@ -360,4 +409,3 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
   <a href="https://github.com/ModalityDance/Optical-Reasoning"><img src="https://img.shields.io/badge/⭐ Star%20us%20on%20GitHub-181717?style=for-the-badge&logo=github&logoColor=white"/></a>
   <a href="https://github.com/ModalityDance/Optical-Reasoning/issues"><img src="https://img.shields.io/badge/🐞 Report%20Issues-e74c3c?style=for-the-badge&logo=github"/></a>
 </div>
-
