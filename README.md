@@ -363,23 +363,28 @@ Optical Reasoning explores the bold idea of using images as a standalone reasoni
 
 ```plaintext
 ├── scripts/
-│   ├── render_typographic.sh
-│   ├── render_graphical.sh
-│   ├── infer_typographic.sh
+│   ├── generate_tor_ratio_data.sh
 │   ├── infer_graphical.sh
-│   └── main_exp.sh
+│   ├── infer_typographic.sh
+│   ├── main_exp.sh
+│   ├── render_graphical.sh
+│   └── render_typographic.sh
 │
 └── src/
     ├── run.py
     ├── configs/
     │   └── profiles_example.yaml
     ├── inference/
-    │   ├── predictor.py
-    │   └── evaluation.py
+    │   ├── base_predictor.py
+    │   ├── evaluation.py
+    │   └── predictor.py
     ├── render/
-    │   ├── typographic_render.py
-    │   └── graphical_render.py
+    │   ├── graphical_render.py
+    │   └── typographic_render.py
     └── utils/
+        ├── add_reasoning_tokens.py
+        ├── image_scaling.py
+        └── token_sizing.py
 
 ```
 
