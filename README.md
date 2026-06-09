@@ -4,7 +4,7 @@
   <h1 align="center">Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text</h1>
 </div>
 <div align="center">
-  <a href=""><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv Paper" height="22"></a>
+  <a href="https://arxiv.org/pdf/2606.09585"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=for-the-badge&logo=arxiv" alt="arXiv Paper" height="22"></a>
   <a href="xxxx"><img src="https://img.shields.io/badge/HuggingFace-Paper-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="HF Papers" height="22"></a>
   <a href="https://huggingface.co/datasets/ModalityDance/Optical-Reasoning-4k"><img src="https://img.shields.io/badge/HuggingFace-Dataset-fcc21b?style=for-the-badge&logo=huggingface&logoColor=white" alt="HF Dataset" height="22"></a>
 </div>
@@ -396,9 +396,14 @@ This project is licensed under the **MIT License**. Please refer to the [LICENSE
 ## 📚 **Citation** <span id="citation"></span>
 
 ```bibtex
-@misc{opticalreasoning2026,
-  title        = {Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text},
-  year         = {2026}
+@misc{bian2026opticalreasoningrethinkingimages,
+      title={Optical Reasoning: Rethinking Images as an Expressive Reasoning Medium Beyond Text}, 
+      author={Yutong Bian and Dongjie Cheng and Heming Xia and Yongqi Li and Wenjie Li},
+      year={2026},
+      eprint={2606.09585},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2606.09585}, 
 }
 
 ```
